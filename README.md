@@ -1,5 +1,5 @@
 # Raspi-FM
-This is a Web-UI for controling the fm_transmitter app by markondej on Raspberry Pi. I made it in Python using Flask. 
+This is a Web-UI for controling the [fm_transmitter](https://github.com/markondej/fm_transmitter) app by [markondej](https://github.com/markondej/) on Raspberry Pi. I made it in Python using Flask. 
 
 
 
