@@ -2,7 +2,7 @@
 Raspi-FM
 =========
 
-Raspi-FM is a lightweight and user-friendly FM transmitter project designed for Raspberry Pi devices. This project allows you to broadcast audio over FM frequencies using a simple web interface accessible through a Wi-Fi access point. It is based on the [fm_transmitter](https://github.com/markondej/fm_transmitter) app made by [markondej](https://github.com/markondej/) that makes it possible to broadcast FM audio signal.
+Raspi-FM is a lightweight and user-friendly FM transmitter project. This project allows you to broadcast audio over FM frequencies using a simple web interface accessible through a Wi-Fi access point. It is based on the [fm_transmitter](https://github.com/markondej/fm_transmitter) app made by [markondej](https://github.com/markondej/) that makes it possible to broadcast FM audio signal.
 
 
 
@@ -28,11 +28,11 @@ Features
 To-Do
 -------
 
-[ ] Bash installer script
-[ ] Broadcast start timer
-[ ] Custom stations list
-[ ] Phone bluetooth audio stream (this will be hard)
-[ ] Existing audio files managment (renaming, deleting)
+- [ ] Bash installer script
+- [ ] Broadcast start timer
+- [ ] Custom stations list
+- [ ] Phone bluetooth audio stream (this will be hard)
+- [ ] Existing audio files managment (renaming, deleting)
 
 
 
