@@ -7,7 +7,7 @@ import wave
 
 
 class FM_Transmitter:
-    def __init__(self, stations_file="stations.json", audio_folder="audio_files"):
+    def __init__(self, stations_file="stations.json", audio_folder="../audio_files"):
         self.stations_file = stations_file
         self.audio_folder = audio_folder
         self.fm_process = None
