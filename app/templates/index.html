@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FM Transmitter Control</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        async function sendRequest(endpoint, station = null, frequency = null, audioFile = null) {
+            const body = {};
+            if (station) body.station = station;
+            if (audioFile) body.audio_file = audioFile;
+            if (frequency) body.frequency = frequency;
+
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            });
+            const result = await response.json();
+            document.getElementById('message').textContent = result.message;
+        }
+        async function uploadFile() {
+            const fileInput = document.getElementById('file_upload');
+            const file = fileInput.files[0];
+            if (!file) {
+                document.getElementById('message').textContent = 'Please select a file to upload';
+                return;
+            }
+
+            document.getElementById('message').textContent = 'Uploading and converting file...';
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                document.getElementById('message').textContent = result.message;
+                
+                // Refresh the audio files list
+                if (response.ok) {
+                    location.reload();
+                }
+            } catch (error) {
+                document.getElementById('message').textContent = 'Error uploading file: ' + error;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>FM Transmitter Control</h1>
+
+        <div class="controls">
+
+           <div class="upload-section">
+                <label for="file_upload">Upload new audio file:</label>
+                <input type="file" id="file_upload" accept=".wav,.mp3" />
+                <button onclick="uploadFile()">Upload</button>
+            </div>
+
+
+            <label for="station">Select a station:</label>
+            <select id="station">
+                {% for station in stations %}
+                <option value="{{ station.name }}">{{ station.name }} ({{ station.frequency }} MHz)</option>
+                {% endfor %}
+            </select>
+            <label for="frequency">Custom FM frequency:</label>
+
+            <input type="number" id="frequency" name="frequency" min="70" max="130" />
+
+
+
+
+
+
+            <label for="audio_file">Select an audio file:</label>
+            <select id="audio_file">
+                {% for file in audio_files %}
+                <option value="{{ file.name }}">{{ file.name }} - {{ file.size }} - {{ file.duration }}</option>
+                {% endfor %}
+            </select>
+
+            <button onclick="sendRequest('/start', document.getElementById('station').value, document.getElementById('frequency').value, document.getElementById('audio_file').value)">Start Transmission</button>
+            <button onclick="sendRequest('/stop')">Stop Transmission</button>
+        </div>
+        <p id="message" class="message"></p>
+    </div>
+</body>
+</html>
+

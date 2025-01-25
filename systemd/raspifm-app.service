@@ -1,0 +1,17 @@
+[Unit]                                                                                                                 
+Description=FM App Service                                                                                             
+After=network.target                                                                                                   
+                                                                                                                       
+[Service]                                                                                                              
+ExecStart=/home/vojtik/fm/bin/python /home/vojtik/fm/app.py                                                            
+WorkingDirectory=/home/vojtik/fm
+Restart=always
+User=vojtik
+Group=vojtik
+Environment=VIRTUAL_ENV=/home/vojtik/fm
+Environment=PATH=/home/vojtik/fm/bin:/usr/bin
+StandardOutput=append:/home/vojtik/fm/logs/output.log
+StandardError=append:/home/vojtik/fm/logs/output.log
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=Setup WiFi Access Point
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /home/vojtik/fm/setup_ap.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,108 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Dark theme background */
+    color: #ffffff; /* Light text for contrast */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ff6f61; /* Accent color */
+}
+
+.container {
+    width: 90%;
+    max-width: 500px; /* Limit max width for mobile */
+    padding: 20px;
+    background-color: #1e1e1e; /* Slightly lighter than body */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Spacing between controls */
+}
+
+label {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #bbbbbb; /* Subtle text */
+}
+
+input[type="file"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #2a2a2a;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #ff6f61; /* Accent color */
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #e65c50; /* Slightly darker on hover */
+}
+
+.upload-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    margin-top: 20px;
+    font-size: 1rem;
+    text-align: center;
+    color: #ff6f61;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 30px; /* Increase padding for better usability */
+    }
+
+    h1 {
+        font-size: 2rem; /* Larger text on smaller screens */
+    }
+
+    button {
+        font-size: 1.1rem; /* Larger buttons for easier tapping */
+        padding: 12px 18px;
+    }
+
+    input[type="file"],
+    input[type="number"],
+    select {
+        font-size: 1.1rem; /* Larger inputs for readability */
+        padding: 12px;
+    }
+
+    .message {
+        font-size: 1.2rem; /* More prominent messages */
+    }
+}

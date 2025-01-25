@@ -1,0 +1,33 @@
+{
+    "stations": [
+        { "name": "Classic Praha", "frequency": 98.7 },
+        { "name": "Color Music Radio", "frequency": 90.7 },
+        { "name": "Country Radio", "frequency": 89.5 },
+        { "name": "Český rozhlas Dvojka", "frequency": 91.2 },
+        { "name": "Český rozhlas Plus", "frequency": 92.6 },
+        { "name": "Český rozhlas Rádio Praha", "frequency": 107.1 },
+        { "name": "Český rozhlas Radiožurnál", "frequency": 94.6 },
+        { "name": "Český rozhlas Vltava", "frequency": 105.0 },
+        { "name": "Dance Rádio", "frequency": 89.0 },
+        { "name": "Dance Rádio", "frequency": 102.9 },
+        { "name": "Evropa 2", "frequency": 88.2 },
+        { "name": "Expres FM", "frequency": 90.3 },
+        { "name": "Fajn Radio", "frequency": 94.1 },
+        { "name": "Fajn Radio", "frequency": 97.2 },
+        { "name": "Frekvence 1", "frequency": 102.5 },
+        { "name": "Hey Radio", "frequency": 101.6 },
+        { "name": "Hitrádio City 93,7 FM", "frequency": 93.7 },
+        { "name": "Radio 1", "frequency": 91.9 },
+        { "name": "Radio Beat", "frequency": 95.3 },
+        { "name": "Rádio Blaník", "frequency": 87.8 },
+        { "name": "Rádio Bonton", "frequency": 99.7 },
+        { "name": "Rádio Impuls", "frequency": 96.6 },
+        { "name": "Radio Kiss", "frequency": 98.1 },
+        { "name": "Radio Spin", "frequency": 96.2 },
+        { "name": "Rádio Prostor", "frequency": 101.1 },
+        { "name": "RFI", "frequency": 99.3 },
+        { "name": "Rock Radio", "frequency": 103.7 },
+        { "name": "RockZone 105,9", "frequency": 105.9 },
+        { "name": "Signál rádio Praha", "frequency": 95.7 }
+    ]
+}
