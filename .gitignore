@@ -17,6 +17,7 @@ audio_files/*
 !audio_files/skullemoji.wav
 !audio_files/examples_test.wav
 gh.sh
+future_readme.md
 
 # Distribution / packaging
 .Python
