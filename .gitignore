@@ -13,7 +13,9 @@ lib/
 pyvenv.cfg
 backup/
 logs/
-
+audio_files/*
+!audio_files/skullemoji.wav
+!audio_files/examples_test.wav
 
 # Distribution / packaging
 .Python
