@@ -25,6 +25,7 @@ fi
 log "Starting Raspifm installer."
 
 sudo apt update
+sudo apt install -y dnsmasq hostapd git python3 python3-pip
 
 # Ensure git is installed
 if ! command -v git &> /dev/null; then
@@ -36,18 +37,12 @@ if ! command -v git &> /dev/null; then
     fi
 fi
 
-if ! command -v dnsmasq &> /dev/null; then
-  sudo apt install -y dnsmasq
-fi
-if ! command -v hostapd &> /dev/null; then
-  sudo apt install -y hostapd
-fi
 
 
 
 # Clone the repository
 if [ -d "$INSTALL_DIR" ]; then
-  log "Directory $INSTALL_DIR already exists. Pulling latest changes."
+  log "Directory $INSTALL_DIR already exists. Trying to pull the latest changes."
   git -C "$INSTALL_DIR" pull
 else
   log "Cloning the repository into $INSTALL_DIR."
@@ -69,17 +64,6 @@ systemctl daemon-reload
 log "Installing raspifm command."
 cp "$INSTALL_DIR/raspifm" "$COMMAND_PATH"
 chmod +x "$COMMAND_PATH"
-
-# Install Python dependencies
-log "Installing Python dependencies."
-if ! command -v python3 &> /dev/null; then
-  sudo apt install -y python3
-fi
-
-if ! command -v pip3 &> /dev/null; then
-  log "pip3 not found. Installing..."
-  sudo apt install -y python3-pip
-fi
 
 
 # Create a Python virtual environment
@@ -108,18 +92,15 @@ fi
 
 
 # Prompt user to start and enable services
-read -p "Do you want to start and enable the Raspifm services? [y/N]: " START_SERVICES
-if [[ "$START_SERVICES" =~ ^[Yy]$ ]]; then
-  echo "Starting and enabling raspifm.service."
-  systemctl start raspifm-app.service
-  systemctl enable raspifm-app.service
 
-  echo "Starting and enabling raspifm_wifi.service."
-  systemctl start raspifm-wifi.service
-  systemctl enable raspifm-wifi.service
-else
-  echo "Skipping service startup. You can start them manually with systemctl commands."
-fi
+echo "Starting and enabling raspifm.service."
+systemctl start raspifm-app.service
+systemctl enable raspifm-app.service
+
+echo "Starting and enabling raspifm_wifi.service."
+systemctl start raspifm-wifi.service
+systemctl enable raspifm-wifi.service
+
 
 # Clean-up and final message
 echo "Installation complete."
@@ -129,11 +110,13 @@ cat <<EOF
 Raspifm has been successfully installed!
 
 You can use the following commands to manage the services:
-  - Start the app:     sudo systemctl start raspifm.service
-  - Stop the app:      sudo systemctl stop raspifm.service
-  - Enable on boot:    sudo systemctl enable raspifm.service
+  - Start the app:     sudo systemctl start raspifm-app.service
+  - Stop the app:      sudo systemctl stop raspifm-app.service
+  - Enable on boot:    sudo systemctl enable raspifm-app.service
+  - Disable on boot:   sudo systemctl disable raspifm-app.service
 
 Access the web interface at: http://<your-pi-ip>:5000
+If connected to raspi-fm wifi: http://192.168.4.1:5000
 ========================================
 
 EOF
