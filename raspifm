@@ -1,0 +1,135 @@
+#!/bin/bash
+
+# Define service names
+APP_SERVICE="raspifm_app.service"
+WIFI_SERVICE="raspifm_wifi.service"
+CONFIG_FILE="/opt/raspifm/config.ini"
+
+# Function to print usage information
+usage() {
+    echo "Usage: raspifm <command>"
+    echo "Commands:"
+    echo "  status              Show status of all services"
+    echo "  app status          Show status of the app service"
+    echo "  wifi status         Show status of the Wi-Fi service"
+    echo "  start               Start both services"
+    echo "  stop                Stop both services"
+    echo "  enable              Enable both services at startup"
+    echo "  disable             Disable both services at startup"
+    echo "  app start           Start the app service"
+    echo "  wifi start          Start the Wi-Fi service"
+    echo "  app stop            Stop the app service"
+    echo "  wifi stop           Stop the Wi-Fi service"
+    echo "  app enable          Enable the app service at startup"
+    echo "  wifi enable         Enable the Wi-Fi service at startup"
+    echo "  app disable         Disable the app service at startup"
+    echo "  wifi disable        Disable the Wi-Fi service at startup"
+    echo "  wifi password       Set the Wi-Fi password"
+    echo "  wifi ssid           Set the Wi-Fi SSID"
+}
+
+# Function to update the config.ini file
+update_config() {
+    local section=$1
+    local key=$2
+    local value=$3
+    if grep -q "^\[$section\]" "$CONFIG_FILE"; then
+        if grep -q "^$key" "$CONFIG_FILE"; then
+            sed -i "/^\[$section\]/,/^\[/ s/^$key.*/$key = $value/" "$CONFIG_FILE"
+        else
+            sed -i "/^\[$section\]/a $key = $value" "$CONFIG_FILE"
+        fi
+    else
+        echo -e "\n[$section]\n$key = $value" >> "$CONFIG_FILE"
+    fi
+}
+
+# Function to read a value from the config.ini file
+read_config() {
+    local section=$1
+    local key=$2
+    awk -F '=' "/^\[$section\]/{a=1} a==1 && \$1~/$key/ {print \$2; exit}" "$CONFIG_FILE" | tr -d ' '
+}
+
+# Function to manage services
+manage_service() {
+    local action=$1
+    local service=$2
+
+    if systemctl $action $service; then
+        echo "Successfully ${action}d $service"
+    else
+        echo "Failed to ${action} $service"
+    fi
+}
+
+# Main script logic
+case "$1" in
+    status)
+        echo "App Service:"
+        systemctl status $APP_SERVICE
+        echo
+        echo "Wi-Fi Service:"
+        systemctl status $WIFI_SERVICE
+        ;;
+    app)
+        case "$2" in
+            status) systemctl status $APP_SERVICE ;;
+            start) manage_service "start" $APP_SERVICE ;;
+            stop) manage_service "stop" $APP_SERVICE ;;
+            enable) manage_service "enable" $APP_SERVICE ;;
+            disable) manage_service "disable" $APP_SERVICE ;;
+            *) usage ;;
+        esac
+        ;;
+    wifi)
+        case "$2" in
+            status) systemctl status $WIFI_SERVICE ;;
+            start) manage_service "start" $WIFI_SERVICE ;;
+            stop) manage_service "stop" $WIFI_SERVICE ;;
+            enable) manage_service "enable" $WIFI_SERVICE ;;
+            disable) manage_service "disable" $WIFI_SERVICE ;;
+            password)
+                echo -n "Enter new Wi-Fi password: "
+                read -s password
+                echo
+                if [ -n "$password" ]; then
+                    update_config "WiFi" "ap_password" "$password"
+                    echo "Wi-Fi password updated in config.ini."
+                else
+                    echo "Password cannot be empty."
+                fi
+                ;;
+            ssid)
+                echo -n "Enter new Wi-Fi SSID: "
+                read ssid
+                if [ -n "$ssid" ]; then
+                    update_config "WiFi" "ap_name" "$ssid"
+                    echo "Wi-Fi SSID updated in config.ini."
+                else
+                    echo "SSID cannot be empty."
+                fi
+                ;;
+            *) usage ;;
+        esac
+        ;;
+    start)
+        manage_service "start" $APP_SERVICE
+        manage_service "start" $WIFI_SERVICE
+        ;;
+    stop)
+        manage_service "stop" $APP_SERVICE
+        manage_service "stop" $WIFI_SERVICE
+        ;;
+    enable)
+        manage_service "enable" $APP_SERVICE
+        manage_service "enable" $WIFI_SERVICE
+        ;;
+    disable)
+        manage_service "disable" $APP_SERVICE
+        manage_service "disable" $WIFI_SERVICE
+        ;;
+    *)
+        usage
+        ;;
+esac
