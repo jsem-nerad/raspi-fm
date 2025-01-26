@@ -51,8 +51,8 @@ fi
 
 # Move systemd service files
 log "Copying systemd service files."
-cp "$INSTALL_DIR/services/raspifm-app.service" "$SERVICE_DIR"
-cp "$INSTALL_DIR/services/raspifm-wifi.service" "$SERVICE_DIR"
+cp "$INSTALL_DIR/systemd/raspifm-app.service" "$SERVICE_DIR"
+cp "$INSTALL_DIR/systemd/raspifm-wifi.service" "$SERVICE_DIR"
 chmod 644 "$SERVICE_DIR/raspifm-app.service" "$SERVICE_DIR/raspifm-wifi.service"
 
 log "Reloading systemd daemon."
