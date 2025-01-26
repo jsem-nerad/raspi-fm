@@ -43,7 +43,6 @@ if ! command -v hostapd &> /dev/null; then
   sudo apt install -y hostapd
 fi
 
-chmod +x "$INSTALL_DIR/scripts/setup_ap.sh"
 
 
 # Clone the repository
@@ -55,6 +54,8 @@ else
   git clone "$REPO_URL" "$INSTALL_DIR"
 fi
 
+
+chmod +x "$INSTALL_DIR/scripts/setup_ap.sh"
 # Move systemd service files
 log "Copying systemd service files."
 cp "$INSTALL_DIR/systemd/raspifm-app.service" "$SERVICE_DIR"
