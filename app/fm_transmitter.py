@@ -7,7 +7,7 @@ import wave
 
 
 class FM_Transmitter:
-    def __init__(self, stations_file="stations.json", audio_folder="../audio_files"):
+    def __init__(self, stations_file="app/stations.json", audio_folder="audio_files"):
         self.stations_file = stations_file
         self.audio_folder = audio_folder
         self.fm_process = None
@@ -51,7 +51,7 @@ class FM_Transmitter:
         if not os.path.exists(file_path):
             return "Error: Audio file not found.", 400
 
-        command = f"sudo ./fm_transmitter/fm_transmitter -f {frequency} {file_path} -r"
+        command = f"sudo ./app/fm_transmitter/fm_transmitter -f {frequency} {file_path} -r"
         try:
             with self.lock:
                 if self.fm_process is None:

@@ -36,8 +36,14 @@ if ! command -v git &> /dev/null; then
     fi
 fi
 
+if ! command -v dnsmasq &> /dev/null; then
+  sudo apt install -y dnsmasq
+fi
+if ! command -v hostapd &> /dev/null; then
+  sudo apt install -y hostapd
+fi
 
-
+chmod +x "$INSTALL_DIR/scripts/setup_ap.sh"
 
 
 # Clone the repository
