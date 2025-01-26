@@ -25,7 +25,7 @@ I tested this only on my Raspberry Pi Zero W, but I will test it on other Pi's t
 
 Supported devices
 -----------------
-As I said before, I tested this only on my Pi Zero W, but it should work on most Pi's with WiFi except Pi 5. Raspberry Pi 4 shouldn't work yet, but I am working on it.
+As I said before, I tested this only on my Pi Zero W, but it should work on most Pi's with WiFi except Pi 5 and 4.
 
 
 Usage
