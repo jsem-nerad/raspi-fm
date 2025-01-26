@@ -110,19 +110,19 @@ fi
 # Prompt user to start and enable services
 read -p "Do you want to start and enable the Raspifm services? [y/N]: " START_SERVICES
 if [[ "$START_SERVICES" =~ ^[Yy]$ ]]; then
-  log "Starting and enabling raspifm.service."
+  echo "Starting and enabling raspifm.service."
   systemctl start raspifm-app.service
   systemctl enable raspifm-app.service
 
-  log "Starting and enabling raspifm_wifi.service."
+  echo "Starting and enabling raspifm_wifi.service."
   systemctl start raspifm-wifi.service
   systemctl enable raspifm-wifi.service
 else
-  log "Skipping service startup. You can start them manually with systemctl commands."
+  echo "Skipping service startup. You can start them manually with systemctl commands."
 fi
 
 # Clean-up and final message
-log "Installation complete."
+echo "Installation complete."
 cat <<EOF
 
 ========================================
