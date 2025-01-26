@@ -84,7 +84,7 @@ fi
 # Create a Python virtual environment
 echo "Creating Python virtual environment in $INSTALL_DIR..."
 if command -v python3 >/dev/null 2>&1; then
-    python3 -m venv "$INSTALL_DIR/venv"
+    python3 -m venv "$INSTALL_DIR"
     echo "Virtual environment created successfully."
 
     # Activate the virtual environment
