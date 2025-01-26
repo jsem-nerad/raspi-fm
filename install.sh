@@ -24,6 +24,21 @@ fi
 
 log "Starting Raspifm installer."
 
+
+# Ensure git is installed
+if ! command -v git &> /dev/null; then
+    echo "[INFO] Git is not installed. Installing it now..."
+    sudo apt update && sudo apt install -y git
+    if ! command -v git &> /dev/null; then
+        echo "[ERROR] Failed to install git. Please install it manually and rerun the installer."
+        exit 1
+    fi
+fi
+
+
+
+
+
 # Clone the repository
 if [ -d "$INSTALL_DIR" ]; then
   log "Directory $INSTALL_DIR already exists. Pulling latest changes."
