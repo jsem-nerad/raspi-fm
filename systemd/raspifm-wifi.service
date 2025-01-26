@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/bin/bash /home/vojtik/fm/setup_ap.sh
+ExecStart=/bin/bash /opt/raspifm/scripts/setup_ap.sh
 Restart=on-failure
 
 [Install]

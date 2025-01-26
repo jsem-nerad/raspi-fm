@@ -1,17 +1,17 @@
 [Unit]                                                                                                                 
-Description=FM App Service                                                                                             
+Description=raspifm                                                                                      
 After=network.target                                                                                                   
                                                                                                                        
 [Service]                                                                                                              
-ExecStart=/home/vojtik/fm/bin/python /home/vojtik/fm/app.py                                                            
-WorkingDirectory=/home/vojtik/fm
+ExecStart=/opt/raspifm/bin/python /opt/raspifm/app/app.py                                                            
+WorkingDirectory=/opt/raspifm
 Restart=always
-User=vojtik
-Group=vojtik
-Environment=VIRTUAL_ENV=/home/vojtik/fm
-Environment=PATH=/home/vojtik/fm/bin:/usr/bin
-StandardOutput=append:/home/vojtik/fm/logs/output.log
-StandardError=append:/home/vojtik/fm/logs/output.log
+User=$USER
+Group=$USER
+Environment=VIRTUAL_ENV=/opt/raspifm
+Environment=PATH=/opt/raspifm/bin:/usr/bin
+StandardOutput=append:/opt/raspifm/logs/output.log
+StandardError=append:/opt/raspifm/logs/output.log
 
 [Install]
 WantedBy=multi-user.target

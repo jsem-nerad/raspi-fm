@@ -24,11 +24,12 @@ fi
 
 log "Starting Raspifm installer."
 
+sudo apt update
 
 # Ensure git is installed
 if ! command -v git &> /dev/null; then
     echo "[INFO] Git is not installed. Installing it now..."
-    sudo apt update && sudo apt install -y git
+    sudo apt install -y git
     if ! command -v git &> /dev/null; then
         echo "[ERROR] Failed to install git. Please install it manually and rerun the installer."
         exit 1
@@ -50,30 +51,54 @@ fi
 
 # Move systemd service files
 log "Copying systemd service files."
-cp "$INSTALL_DIR/services/raspifm.service" "$SERVICE_DIR"
-cp "$INSTALL_DIR/services/raspifm_wifi.service" "$SERVICE_DIR"
-chmod 644 "$SERVICE_DIR/raspifm.service" "$SERVICE_DIR/raspifm_wifi.service"
+cp "$INSTALL_DIR/services/raspifm-app.service" "$SERVICE_DIR"
+cp "$INSTALL_DIR/services/raspifm-wifi.service" "$SERVICE_DIR"
+chmod 644 "$SERVICE_DIR/raspifm-app.service" "$SERVICE_DIR/raspifm-wifi.service"
 
 log "Reloading systemd daemon."
 systemctl daemon-reload
 
 # Move raspifm shell script to /usr/local/bin
 log "Installing raspifm command."
-cp "$INSTALL_DIR/raspifm.sh" "$COMMAND_PATH"
+cp "$INSTALL_DIR/raspifm" "$COMMAND_PATH"
 chmod +x "$COMMAND_PATH"
 
 # Install Python dependencies
 log "Installing Python dependencies."
 if ! command -v python3 &> /dev/null; then
-  error_exit "Python3 is not installed. Please install Python3 and re-run the installer."
+  sudo apt install -y python3
 fi
 
 if ! command -v pip3 &> /dev/null; then
   log "pip3 not found. Installing..."
-  apt update && apt install -y python3-pip
+  sudo apt install -y python3-pip
 fi
 
-pip3 install -r "$INSTALL_DIR/requirements.txt"
+
+# Create a Python virtual environment
+echo "Creating Python virtual environment in $INSTALL_DIR..."
+if command -v python3 >/dev/null 2>&1; then
+    python3 -m venv "$INSTALL_DIR/venv"
+    echo "Virtual environment created successfully."
+
+    # Activate the virtual environment
+    source "$INSTALL_DIR/venv/bin/activate"
+
+    # Install Python dependencies
+    echo "Installing Python dependencies..."
+    pip3 install -r "$INSTALL_DIR/requirements.txt"
+
+    # Deactivate the virtual environment
+    deactivate
+    echo "Python dependencies installed and virtual environment setup complete."
+else
+    echo "Python3 is not installed. Please install Python3 and rerun the installer."
+    exit 1
+fi
+
+
+
+
 
 # Prompt user to start and enable services
 read -p "Do you want to start and enable the Raspifm services? [y/N]: " START_SERVICES
