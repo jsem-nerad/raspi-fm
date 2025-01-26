@@ -4,6 +4,9 @@ Raspi-FM
 
 Raspi-FM is a lightweight and user-friendly FM transmitter project based on the [fm_transmitter](https://github.com/markondej/fm_transmitter) app made by [markondej](https://github.com/markondej/) that makes it possible to broadcast FM audio signal.
 
+<img src="https://github.com/vojtikDortik/raspi-fm/blob/master/images/webapp.png?raw=true" width=50% height=auto>
+
+
 Features
 --------
 1. **Web Interface**: Control the FM transmitter via a browser by connecting to the Wi-Fi AP and accessing `http://192.168.4.1:5000`.
