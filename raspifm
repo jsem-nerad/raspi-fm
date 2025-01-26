@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Define service names
-APP_SERVICE="raspifm_app.service"
-WIFI_SERVICE="raspifm_wifi.service"
+APP_SERVICE="raspifm-app.service"
+WIFI_SERVICE="raspifm-wifi.service"
 CONFIG_FILE="/opt/raspifm/config.ini"
 
 # Function to print usage information
