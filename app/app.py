@@ -28,6 +28,7 @@ def convert_to_wav(input_path, output_path):
     """Convert audio file to WAV format using sox with specific parameters"""
     try:
         subprocess.run([
+            'sudo'
             'sox',
             input_path,
             '-r', '22050',  # Sample rate
