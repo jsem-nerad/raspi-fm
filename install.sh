@@ -89,7 +89,7 @@ if command -v python3 >/dev/null 2>&1; then
     echo "Virtual environment created successfully."
 
     # Activate the virtual environment
-    source "$INSTALL_DIR/venv/bin/activate"
+    source "$INSTALL_DIR/bin/activate"
 
     # Install Python dependencies
     echo "Installing Python dependencies..."
