@@ -2,28 +2,14 @@
 Raspi-FM
 =========
 
-Raspi-FM is a lightweight and user-friendly FM transmitter project. This project allows you to broadcast audio over FM frequencies using a simple web interface accessible through a Wi-Fi access point. It is based on the [fm_transmitter](https://github.com/markondej/fm_transmitter) app made by [markondej](https://github.com/markondej/) that makes it possible to broadcast FM audio signal.
-
-
-
-
-Overview
---------
-
-The project includes:
-- A Flask-based web application for controlling the FM transmitter.
-- Scripts to set up a Wi-Fi access point for easy connection.
-- Systemd services for seamless startup and management.
-- Audio file playback, frequency management, and other utilities.
-- All Prague FM stations list (I want to add custom stations list option)
-
+Raspi-FM is a lightweight and user-friendly FM transmitter project based on the [fm_transmitter](https://github.com/markondej/fm_transmitter) app made by [markondej](https://github.com/markondej/) that makes it possible to broadcast FM audio signal.
 
 Features
 --------
 1. **Web Interface**: Control the FM transmitter via a browser by connecting to the Wi-Fi AP and accessing `http://192.168.4.1:5000`.
 2. **Audio Playback**: Select audio files to play on the FM transmitter.
 3. **Custom Frequency**: Set the desired FM frequency for broadcasting.
-4. **Predefined Stations**: Choose from a list of all Prague FM stations
+4. **Predefined Stations**: Choose from a list of all Prague FM stations (I want to add custom stations list option)
 
 To-Do
 -------
