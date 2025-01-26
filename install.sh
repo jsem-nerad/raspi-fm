@@ -25,7 +25,7 @@ fi
 log "Starting Raspifm installer."
 
 sudo apt update
-sudo apt install -y dnsmasq hostapd git python3 python3-pip
+sudo apt install -y dnsmasq hostapd git python3 python3-pip libraspberrypi-dev
 
 # Ensure git is installed
 if ! command -v git &> /dev/null; then
