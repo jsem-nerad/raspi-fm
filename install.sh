@@ -2,7 +2,7 @@
 
 set -e  # Exit on error
 
-REPO_URL="https://github.com/YOUR_USERNAME/raspifm.git"
+REPO_URL="https://github.com/vojtikDortik/raspi-fm.git"
 INSTALL_DIR="/opt/raspifm"
 SERVICE_DIR="/etc/systemd/system"
 COMMAND_PATH="/usr/local/bin/raspifm"
