@@ -104,12 +104,12 @@ fi
 read -p "Do you want to start and enable the Raspifm services? [y/N]: " START_SERVICES
 if [[ "$START_SERVICES" =~ ^[Yy]$ ]]; then
   log "Starting and enabling raspifm.service."
-  systemctl start raspifm.service
-  systemctl enable raspifm.service
+  systemctl start raspifm-app.service
+  systemctl enable raspifm-app.service
 
   log "Starting and enabling raspifm_wifi.service."
-  systemctl start raspifm_wifi.service
-  systemctl enable raspifm_wifi.service
+  systemctl start raspifm-wifi.service
+  systemctl enable raspifm-wifi.service
 else
   log "Skipping service startup. You can start them manually with systemctl commands."
 fi
