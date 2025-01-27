@@ -4,12 +4,12 @@
   <p align="center">
     <img src="https://raw.githubusercontent.com/vojtikDortik/raspi-fm/refs/heads/main/images/logo.png" style="width: 30%; height: auto;">
     <br />
-    fm_transmitter web-ui and controls made in Python and bash
+    FM Transmitter Web UI and Controls Built with Python and Bash
     <br />
     <br />
-    <a href="https://github.com/vojtikDortik/raspi-fm/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/vojtikDortik/raspi-fm/issues/new?labels=bug&template=bug-report---.md">Report a Bug</a>
     ·
-    <a href="https://github.com/vojtikDortik/raspi-fm/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/vojtikDortik/raspi-fm/issues/new?labels=enhancement&template=feature-request---.md">Request a Feature</a>
   </p>
 </div>
 
@@ -36,7 +36,7 @@
 
 # About
 
-Raspi-FM is a lightweight and user-friendly FM transmitter project based on the [fm_transmitter](https://github.com/markondej/fm_transmitter) app made by [markondej](https://github.com/markondej/) that makes it possible to broadcast FM audio signal.
+Raspi-FM is a lightweight and user-friendly FM transmitter project based on the [fm_transmitter](https://github.com/markondej/fm_transmitter) app made by [markondej](https://github.com/markondej/) that makes it possible to broadcast an FM audio signal.
 
 
 # Features
@@ -52,9 +52,9 @@ Raspi-FM is a lightweight and user-friendly FM transmitter project based on the 
 
 
 # Installation
-> This can take over 15 minutes, so be patient
+> The installation process can take over 15 minutes, so please be patient.
 
-To install raspi-fm, just run this on your Raspberry Pi:
+To install Raspi-FM, run the following command on your Raspberry Pi::
 ```bash
 curl -fsSL https://raw.githubusercontent.com/vojtikDortik/raspi-fm/refs/heads/main/install.sh | sudo bash
 ```
@@ -62,7 +62,7 @@ curl -fsSL https://raw.githubusercontent.com/vojtikDortik/raspi-fm/refs/heads/ma
 
 
 ### Supported devices
-I tested this only on my Pi Zero W, but it should work on most Pi's with WiFi except Pi 5 and 4.
+I tested this only on my Pi Zero W, but it should work on most Raspberry Pi models with Wi-Fi, except the Pi 5 and Pi 4.
 
 <br>
 <br>
@@ -70,15 +70,15 @@ I tested this only on my Pi Zero W, but it should work on most Pi's with WiFi ex
 
 # Usage
 After successful installation:
-1. Connect to the Pi using WiFi. You should see SSID `raspi-fm`, that you can connect to using `flipfmsignal` password.
-2. Then open your web browser and go to it's default IP on port 5000 `http://192.168.4.1:5000`. 
-3. If you have problems conneting to WiFi or opening it's IP try turning off your data connection (if you are on a phone) and disable autoconnect to known nearby WiFi's.
-4. Now you can choose a frequency and an audio file and click Start `Transmittion`
+1. Connect to the Pi using WiFi. You should see the SSID raspi-fm, which you can connect to using the password flipfmsignal.
+2. Then open your web browser and go to its default IP address on port 5000: http://192.168.4.1:5000 
+3. If you experience issues connecting to Wi-Fi or accessing its IP address, try turning off your mobile data (if you are using a phone) and/or disabling auto-connect for known nearby Wi-Fi networks.
+4. Now you can choose a frequency, select an audio file, and click 'Start Transmission'.
 
 <br>
 
 ## Command control
-General Syntax
+The general syntax for command control is as follows:
 ```bash
 raspifm [service] <command>
 ```
@@ -98,7 +98,7 @@ You can use the following commands alone or specify a service:
 | `stop`      | Stop the specified service(s).                                             |
 | `enable`    | Enable the specified service(s) to start automatically at system startup.  |
 | `disable`   | Disable the specified service(s) from starting automatically at system startup. |
-| `restart`   | Restart the specified service(s) (stops and starts them).                  |
+| `restart`   | Restart the specified service(s) by stopping and starting them.                  |
 
 
 
@@ -125,7 +125,7 @@ You can use the following commands alone or specify a service:
 - [ ] Broadcast start timer
 - [ ] Custom stations list
 - [ ] Phone bluetooth audio stream (this will be hard)
-- [ ] Existing audio files managment (renaming, deleting)
+- [ ] Existing audio file management (renaming, deleting)
 
 
 <br>
@@ -137,7 +137,7 @@ You can use the following commands alone or specify a service:
 
 # How does it work?
 
-If you are interested, here is a description of this project
+If you're interested, here's an overview of how this project works.
 
 
 ## Files
@@ -176,10 +176,10 @@ The installer code gets read from the GitHub repo and then gets executed using b
 
 `curl -fsSL https://...../install.sh | sudo bash`
 
-When the `install.sh` script is executed, following things happen:
+When the install.sh script is executed, the following steps occur:"
 1. Check if it was executed using sudo
 2. Update using `apt update`
-3. Install following packages:
+3. Install the following packages:
    
 | Package            | Reason |
 |--------------------|-------------|
@@ -194,13 +194,13 @@ When the `install.sh` script is executed, following things happen:
 
 4. Clone this repository to /opt/raspifm
 5. Copy service files to /etc/systemd/system
-6. Add `raspifm` command to PATH
+6. Add the `raspifm` command to PATH
 7. Make some files executable
 8. Create a Python venv
 9. Install Python libraries from `requirements.txt`
-10. Enable and start services
+10. Enable and start the raspi-fm services.
 
-And that's it. Raspi-FM is now installed. This usualy takes over 15 minutes on my Pi Zero W and slow network.
+And that's it. This whole install process usually takes over 15 minutes on my Pi Zero W with a slow network connection.
 
 <br>
 
@@ -209,14 +209,14 @@ And that's it. Raspi-FM is now installed. This usualy takes over 15 minutes on m
 Right now, there are 2 bash scripts that are actively being used - it is the `setup_ap.sh` and `stop_ap.sh` and as the names suggests, those scripts are being used to turn the WiFi access point on and off. 
 
 ### `setup_ap.sh`
-This script uses `dnsmasq` and `hostapd` to host a WiFi access point, so your device can connect to your Pi using WiFi. The access point is hosted on interface `wlan1` that is made on top of standard `wlan0` used for connecting to WiFi. It is using the `config.ini` to set the SSID and password of the access point. DHCP is used to assign IP's to connected devices and it's range is from `192.168.4.2` to `192.168.4.20` and the IP of the Pi itself is `192.168.4.1`.
+This script uses `dnsmasq` and `hostapd` to host a WiFi access point, so your device can connect to your Raspberry Pi via Wi-Fi. The access point is hosted on interface `wlan1` that is made on top of standard `wlan0` used for connecting to WiFi. It is using the `config.ini` to set the SSID and password of the access point. DHCP is used to assign IP's to connected devices and its range is from `192.168.4.2` to `192.168.4.20` and the IP of the Pi itself is `192.168.4.1`.
 
 ### `stop_ap.sh`
 Basically all this does is, that it just reverts all the changes of `setup_ap.sh`, so for example it removes `wlan1` interface, restores original hostapd config file, stops hostapd and dnsmasq...
 
 ## Python code
 
-There are two Python files in my project - `app.py` and `fm_transmitter.py`. Those files are ran in a Python venv, so It doesn't do anything to the system Python.
+There are two Python files in my project - `app.py` and `fm_transmitter.py`. Those files are ran in a Python venv, so it doesn't interfere with the system Python installation.
 
 ### `fm_transmitter.py`
 
