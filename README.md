@@ -2,7 +2,7 @@
 
 
   <p align="center">
-    <img src="https://raw.githubusercontent.com/vojtikDortik/raspi-fm/refs/heads/main/images/webapp.png" style="width: 50%; height: auto;">
+    <img src="https://raw.githubusercontent.com/vojtikDortik/raspi-fm/refs/heads/main/images/nothing.png" style="width: 50%; height: auto;">
     <br />
     fm_transmitter web-ui and controls made in Python and bash
     <br />
