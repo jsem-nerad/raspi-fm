@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e  # Exit on error
+set -e
 
 REPO_URL="https://github.com/vojtikDortik/raspi-fm.git"
 INSTALL_DIR="/opt/raspifm"
@@ -13,106 +13,51 @@ log() {
 }
 
 error_exit() {
-  echo "[ERROR] $1" >&2
+  echo "[ERROR] $1" >&2 | tee -a "$LOG_FILE"
   exit 1
 }
 
 # Check for root permissions
-if [ "$EUID" -ne 0 ]; then
-  error_exit "This script must be run as root. Please use sudo."
-fi
+if [ "$EUID" -ne 0 ]; then error_exit "Script must be run as root."; fi
 
 log "Starting Raspifm installer."
 
-apt update
-apt install -y dnsmasq hostapd git python3 python3-pip libraspberrypi-dev sox libsox-fmt-mp3
+# Update and install dependencies in parallel where possible
+apt update &
+wait
+apt install -y dnsmasq hostapd git python3 python3-pip libraspberrypi-dev sox libsox-fmt-mp3 &
+wait
 
-# Ensure git is installed
-if ! command -v git &> /dev/null; then
-      echo "[ERROR] Failed to install git. Please install it manually and rerun the installer."
-      exit 1
-fi
-
-
-
-
-# Clone the repository
+# Clone or update repository efficiently
 if [ -d "$INSTALL_DIR" ]; then
-  log "Directory $INSTALL_DIR already exists. Trying to pull the latest changes."
-  git -C "$INSTALL_DIR" pull
+  log "Directory $INSTALL_DIR exists. Checking for updates."
+  git -C "$INSTALL_DIR" fetch && git -C "$INSTALL_DIR" pull || error_exit "Failed to update repository."
 else
-  log "Cloning the repository into $INSTALL_DIR."
-  git clone "$REPO_URL" "$INSTALL_DIR"
+  log "Cloning repository into $INSTALL_DIR."
+  git clone --depth 1 "$REPO_URL" "$INSTALL_DIR" || error_exit "Failed to clone repository."
 fi
 
-
-chmod +x "$INSTALL_DIR/scripts/setup_ap.sh"
-# Move systemd service files
-log "Copying systemd service files."
-cp "$INSTALL_DIR/systemd/raspifm-app.service" "$SERVICE_DIR"
-cp "$INSTALL_DIR/systemd/raspifm-wifi.service" "$SERVICE_DIR"
-chmod 644 "$SERVICE_DIR/raspifm-app.service" "$SERVICE_DIR/raspifm-wifi.service"
+# Copy and set up systemd services if not already configured
+for service in raspifm-app raspifm-wifi; do
+  cp "$INSTALL_DIR/systemd/${service}.service" "$SERVICE_DIR/"
+  chmod 644 "$SERVICE_DIR/${service}.service"
+done
 
 log "Reloading systemd daemon."
 systemctl daemon-reload
 
-# Move raspifm shell script to /usr/local/bin
-log "Installing raspifm command."
-cp "$INSTALL_DIR/raspifm" "$COMMAND_PATH"
-chmod +x "$COMMAND_PATH"
+# Install Python virtual environment and dependencies efficiently
+if [ ! -d "$INSTALL_DIR/bin" ]; then python3 -m venv "$INSTALL_DIR"; fi
 
+source "$INSTALL_DIR/bin/activate"
+pip3 install --no-cache-dir --upgrade pip setuptools wheel &&
+pip3 install --no-cache-dir -r "$INSTALL_DIR/requirements.txt" || error_exit "Failed to install Python dependencies."
+deactivate
 
-# Create a Python virtual environment
-echo "Creating Python virtual environment in $INSTALL_DIR..."
-if command -v python3 >/dev/null 2>&1; then
-    python3 -m venv "$INSTALL_DIR"
-    echo "Virtual environment created successfully."
+# Start and enable services only if necessary
+for service in raspifm-app raspifm-wifi; do
+  systemctl is-active --quiet ${service}.service || systemctl start ${service}.service
+  systemctl is-enabled --quiet ${service}.service || systemctl enable ${service}.service
+done
 
-    # Activate the virtual environment
-    source "$INSTALL_DIR/bin/activate"
-
-    # Install Python dependencies
-    echo "Installing Python dependencies..."
-    pip3 install -r "$INSTALL_DIR/requirements.txt"
-
-    # Deactivate the virtual environment
-    deactivate
-    echo "Python dependencies installed and virtual environment setup complete."
-else
-    echo "Python3 is not installed. Please install Python3 and rerun the installer."
-    exit 1
-fi
-
-
-
-
-
-# Prompt user to start and enable services
-
-echo "Starting and enabling raspifm.service."
-systemctl start raspifm-app.service
-systemctl enable raspifm-app.service
-
-echo "Starting and enabling raspifm_wifi.service."
-systemctl start raspifm-wifi.service
-systemctl enable raspifm-wifi.service
-
-
-# Clean-up and final message
-echo "Installation complete."
-cat <<EOF
-
-========================================
-Raspifm has been successfully installed!
-
-You can use the following commands to manage the services:
-  - Start the app:     systemctl start raspifm-app.service
-  - Stop the app:      systemctl stop raspifm-app.service
-  - Enable on boot:    systemctl enable raspifm-app.service
-  - Disable on boot:   systemctl disable raspifm-app.service
-
-Access the web interface at: http://<your-pi-ip>:5000
-If connected to raspi-fm wifi: http://192.168.4.1:5000
-========================================
-
-EOF
+log "Installation complete!"
