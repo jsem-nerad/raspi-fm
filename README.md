@@ -75,6 +75,8 @@ After successful installation:
 3. If you have problems conneting to WiFi or opening it's IP try turning off your data connection (if you are on a phone) and disable autoconnect to known nearby WiFi's.
 4. Now you can choose a frequency and an audio file and click Start `Transmittion`
 
+<br>
+
 ## Command control
 General Syntax
 ```bash
@@ -164,6 +166,8 @@ Raspi-FM                           - Main app directory - on default /opt/raspif
 └── requirements.txt               - Python library requirements
 ```
 
+<br>
+
 ## Installation
 
 To make raspi-fm work properly, there needs to be quite a lot of things installed on the system and also some files placed in different locations of the system, so that is why I made a separate application for installing, rather than telling you to just clone the repo.
@@ -197,6 +201,8 @@ When the `install.sh` script is executed, following things happen:
 10. Enable and start services
 
 And that's it. Raspi-FM is now installed. This usualy takes over 15 minutes on my Pi Zero W and slow network.
+
+<br>
 
 ## Scripts
 
