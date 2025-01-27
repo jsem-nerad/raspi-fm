@@ -67,10 +67,61 @@ As I said before, I tested this only on my Pi Zero W, but it should work on most
 
 ## Usage
 
-After successful installation, the Pi should start a WiFi access point named `raspi-fm`, that you can connect to using `flipfmsignal` password. Then you can open your web browser and open it's default IP with port 5000 `http://192.168.4.1:5000`. If you have problems conneting to the AP, try turning off your data connection (if you are on a phone) and disable autoconnect to known nearby WiFi's.
+### After installation
+After successful installation, the Pi should start a WiFi access point named `raspi-fm`, that you can connect to using `flipfmsignal` password. Then you can open your web browser and open it's default IP with port 5000 `http://192.168.4.1:5000`. 
+If you have problems conneting to the AP, try turning off your data connection (if you are on a phone) and disable autoconnect to known nearby WiFi's.
 
-
-
+### Command control
+General Syntax
+```bash
+raspifm [service] <command>
+```
+#### Commands
+You can use the following commands alone or specify a service:
+- `status`: Show the status of all services.
+- `start`: Start the specified service(s).
+- `stop`: Stop the specified service(s).
+- `enable`: Enable the specified service(s) to start automatically at system startup.
+- `disable`: Disable the specified service(s) from starting automatically at system startup.
+- `restart`: Restart the specified service(s) (stops and starts them).
+#### Services
+You can manage the following services:
+- `app`: Controls the web UI application.
+- `wifi`: Controls the Wi-Fi access point.
+#### Additional Commands
+- `wifi password`: Set a new password for the Wi-Fi access point.
+```bash
+raspifm wifi password <new_password>
+```
+- `wifi ssid`: Set a new SSID (network name) for the Wi-Fi access point.
+```bash
+raspifm wifi ssid <new_ssid>
+```
+- `config`: Open the config.ini file for manual configuration.
+```bash
+raspifm config
+```
+### Examples
+Check the status of all services:
+```bash
+raspifm status
+```
+Start the web UI application:
+```bash
+raspifm app start
+```
+Restart the Wi-Fi access point:
+```bash
+raspifm wifi restart
+```
+Set a new Wi-Fi password:
+```bash
+raspifm wifi password mySecurePassword123
+```
+Enable the web UI application to start at boot:
+```bash
+raspifm app enable
+```
 
 
 

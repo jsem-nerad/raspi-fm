@@ -10,17 +10,18 @@ usage() {
     echo "Usage: raspifm [service] <command>"
     echo "Commands:"
     echo "  status         - Show status of all services"
-    echo "  start          - Start both services"
-    echo "  stop           - Stop both services"
-    echo "  enable         - Enable both services at startup"
-    echo "  disable        - Disable both services at startup"
-    echo "  config         - Open config.ini"
+    echo "  start          - Start services"
+    echo "  stop           - Stop services"
+    echo "  enable         - Enable services at startup"
+    echo "  disable        - Disable services at startup"
+    echo "  restart        - Stops and starts services"
     echo "Services:"
     echo "  app            - Controls the web-ui app"
     echo "  wifi           - Controls the WiFi access point"
     echo "Other commands:"
     echo "  wifi password  - Set the Wi-Fi password"
     echo "  wifi ssid      - Set the Wi-Fi SSID"
+    echo "  config         - Open config.ini"
 }
 
 # Function to update the config.ini file
@@ -85,7 +86,14 @@ case "$1" in
         case "$2" in
             status) systemctl status $WIFI_SERVICE ;;
             start) manage_service "start" $WIFI_SERVICE ;;
-            stop) manage_service "stop" $WIFI_SERVICE ;;
+            stop)
+                manage_service "stop" $WIFI_SERVICE
+                /opt/raspifm/scripts/stop_ap.sh
+                ;;
+            restart)
+                manage_service "stop" $WIFI_SERVICE
+                manage_service "start" $WIFI_SERVICE
+                ;;
             enable) manage_service "enable" $WIFI_SERVICE ;;
             disable) manage_service "disable" $WIFI_SERVICE ;;
             password)
@@ -119,6 +127,13 @@ case "$1" in
     stop)
         manage_service "stop" $APP_SERVICE
         manage_service "stop" $WIFI_SERVICE
+        /opt/raspifm/scripts/stop_ap.sh
+        ;;
+    restart)
+        manage_service "stop" $APP_SERVICE
+        manage_service "stop" $WIFI_SERVICE
+        manage_service "start" $APP_SERVICE
+        manage_service "start" $WIFI_SERVICE
         ;;
     enable)
         manage_service "enable" $APP_SERVICE

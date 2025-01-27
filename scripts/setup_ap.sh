@@ -65,18 +65,6 @@ echo "Starting dnsmasq and hostapd..."
 sudo systemctl start dnsmasq
 sudo systemctl start hostapd
 
-echo "Enabling IP forwarding..."
-sudo sysctl -w net.ipv4.ip_forward=1
-
-echo "Configuring NAT..."
-sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
-sudo iptables -A FORWARD -i wlan0 -o wlan1 -m state --state RELATED,ESTABLISHED -j ACCEPT
-sudo iptables -A FORWARD -i wlan1 -o wlan0 -j ACCEPT
-
-echo "Saving iptables rules..."
-sudo mkdir -p /etc/iptables
-sudo sh -c "iptables-save > /etc/iptables/rules.v4"
-
 sudo ip addr add 192.168.4.1/24 dev wlan1
 sudo ip link set wlan1 up
 
