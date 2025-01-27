@@ -37,9 +37,7 @@
 ## About
 
 Raspi-FM is a lightweight and user-friendly FM transmitter project based on the [fm_transmitter](https://github.com/markondej/fm_transmitter) app made by [markondej](https://github.com/markondej/) that makes it possible to broadcast FM audio signal.
-<p align="center">
- <img src="https://raw.githubusercontent.com/vojtikDortik/raspi-fm/refs/heads/main/images/webapp.png" style="width: 50%; height: auto;">
-</p>
+
 
 ## Features
 
@@ -47,6 +45,11 @@ Raspi-FM is a lightweight and user-friendly FM transmitter project based on the 
 2. **Audio Playback**: Select audio files to play on the FM transmitter.
 3. **Custom Frequency**: Set the desired FM frequency for broadcasting.
 4. **Predefined Stations**: Choose from a list of all Prague FM stations (I want to add custom stations list option)
+
+<p align="center">
+ <img src="https://raw.githubusercontent.com/vojtikDortik/raspi-fm/refs/heads/main/images/webapp.png" style="width: 50%; height: auto;">
+</p>
+
 
 ## Installation
 
