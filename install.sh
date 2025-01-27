@@ -49,8 +49,9 @@ systemctl daemon-reload
 log "Installing raspifm command."
 cp "$INSTALL_DIR/raspifm" "$COMMAND_PATH"
 chmod +x "$COMMAND_PATH"
-
 chmod +x "$INSTALL_DIR/app/fm_transmitter"
+chmod +x "$INSTALL_DIR/scripts/setup_ap.sh"
+chmod +x "$INSTALL_DIR/scripts/stop_ap.sh"
 
 log "Create a Python venv"
 if [ ! -d "$INSTALL_DIR/bin" ]; then python3 -m venv "$INSTALL_DIR"; fi
