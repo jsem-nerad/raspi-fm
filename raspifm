@@ -14,6 +14,7 @@ usage() {
     echo "  stop           - Stop both services"
     echo "  enable         - Enable both services at startup"
     echo "  disable        - Disable both services at startup"
+    echo "  config         - Open config.ini"
     echo "Services:"
     echo "  app            - Controls the web-ui app"
     echo "  wifi           - Controls the WiFi access point"
@@ -59,6 +60,10 @@ manage_service() {
 
 # Main script logic
 case "$1" in
+    config)
+        echo "Opening config file"
+        sudo nano $CONFIG_FILE
+        ;;
     status)
         echo "App Service:"
         systemctl status $APP_SERVICE
@@ -88,7 +93,7 @@ case "$1" in
                 read -s password
                 echo
                 if [ -n "$password" ]; then
-                    update_config "WiFi" "ap_password" "$password"
+                    update_config "WiFi" "password" "$password"
                     echo "Wi-Fi password updated in config.ini."
                 else
                     echo "Password cannot be empty."
@@ -98,7 +103,7 @@ case "$1" in
                 echo -n "Enter new Wi-Fi SSID: "
                 read ssid
                 if [ -n "$ssid" ]; then
-                    update_config "WiFi" "ap_name" "$ssid"
+                    update_config "WiFi" "ssid" "$ssid"
                     echo "Wi-Fi SSID updated in config.ini."
                 else
                     echo "SSID cannot be empty."
