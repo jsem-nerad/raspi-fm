@@ -51,7 +51,7 @@ class FM_Transmitter:
         if not os.path.exists(file_path):
             return "Error: Audio file not found.", 400
 
-        command = f"sudo ./app/fm_transmitter/fm_transmitter -f {frequency} {file_path} -r"
+        command = f"sudo ./app/fm_transmitter -f {frequency} {file_path} -r"
         try:
             with self.lock:
                 if self.fm_process is None:
