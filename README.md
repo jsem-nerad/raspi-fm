@@ -57,12 +57,11 @@ To install raspi-fm, just run this on your Raspberry Pi:
 ```bash
 curl -fsSL https://raw.githubusercontent.com/vojtikDortik/raspi-fm/refs/heads/main/install.sh | sudo bash
 ```
-I tested this only on my Raspberry Pi Zero W, but it should work on other Pi's too.
+> This can take over 15 minutes, so be patient
 
 
 ## Supported devices
-
-As I said before, I tested this only on my Pi Zero W, but it should work on most Pi's with WiFi except Pi 5 and 4.
+I tested this only on my Pi Zero W, but it should work on most Pi's with WiFi except Pi 5 and 4.
 
 
 ## Usage
