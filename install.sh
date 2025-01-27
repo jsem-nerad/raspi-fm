@@ -24,17 +24,13 @@ fi
 
 log "Starting Raspifm installer."
 
-sudo apt update
-sudo apt install -y dnsmasq hostapd git python3 python3-pip libraspberrypi-dev sox libsox-fmt-mp3
+apt update
+apt install -y dnsmasq hostapd git python3 python3-pip libraspberrypi-dev sox libsox-fmt-mp3
 
 # Ensure git is installed
 if ! command -v git &> /dev/null; then
-    echo "[INFO] Git is not installed. Installing it now..."
-    sudo apt install -y git
-    if ! command -v git &> /dev/null; then
-        echo "[ERROR] Failed to install git. Please install it manually and rerun the installer."
-        exit 1
-    fi
+      echo "[ERROR] Failed to install git. Please install it manually and rerun the installer."
+      exit 1
 fi
 
 
@@ -110,10 +106,10 @@ cat <<EOF
 Raspifm has been successfully installed!
 
 You can use the following commands to manage the services:
-  - Start the app:     sudo systemctl start raspifm-app.service
-  - Stop the app:      sudo systemctl stop raspifm-app.service
-  - Enable on boot:    sudo systemctl enable raspifm-app.service
-  - Disable on boot:   sudo systemctl disable raspifm-app.service
+  - Start the app:     systemctl start raspifm-app.service
+  - Stop the app:      systemctl stop raspifm-app.service
+  - Enable on boot:    systemctl enable raspifm-app.service
+  - Disable on boot:   systemctl disable raspifm-app.service
 
 Access the web interface at: http://<your-pi-ip>:5000
 If connected to raspi-fm wifi: http://192.168.4.1:5000
