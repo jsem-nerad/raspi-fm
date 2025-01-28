@@ -112,7 +112,7 @@ You can use the following commands alone or specify a service:
 
 #### Or you can just type `raspifm` to get hint
 
-<img src="https://raw.githubusercontent.com/vojtikDortik/raspi-fm/refs/heads/main/images/screenshot.png" style="width: 50%; height: auto;">
+<img src="https://raw.githubusercontent.com/vojtikDortik/raspi-fm/refs/heads/main/images/screenshot.png" style="width: 80%; height: auto;">
 
 <br>
 <br>
