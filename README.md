@@ -2,14 +2,14 @@
 
 
   <p align="center">
-    <img src="https://raw.githubusercontent.com/vojtikDortik/raspi-fm/refs/heads/main/images/logo.png" style="width: 30%; height: auto;">
+    <img src="https://raw.githubusercontent.com/jsem-nerad/raspi-fm/refs/heads/main/images/logo.png" style="width: 30%; height: auto;">
     <br />
     FM Transmitter Web UI and Controls Built with Python and Bash
     <br />
     <br />
-    <a href="https://github.com/vojtikDortik/raspi-fm/issues/new?labels=bug&template=bug-report---.md">Report a Bug</a>
+    <a href="https://github.com/jsem-nerad/raspi-fm/issues/new?labels=bug&template=bug-report---.md">Report a Bug</a>
     ·
-    <a href="https://github.com/vojtikDortik/raspi-fm/issues/new?labels=enhancement&template=feature-request---.md">Request a Feature</a>
+    <a href="https://github.com/jsem-nerad/raspi-fm/issues/new?labels=enhancement&template=feature-request---.md">Request a Feature</a>
   </p>
 </div>
 
@@ -47,7 +47,7 @@ Raspi-FM is a lightweight and user-friendly FM transmitter project based on the 
 4. **Predefined Stations**: Choose from a list of all Prague FM stations (I want to add custom stations list option)
 
 
-<img src="https://raw.githubusercontent.com/vojtikDortik/raspi-fm/refs/heads/main/images/webapp.png" style="width: 400px; height: auto;">
+<img src="https://raw.githubusercontent.com/jsem-nerad/raspi-fm/refs/heads/main/images/webapp.png" style="width: 400px; height: auto;">
 
 
 
@@ -56,7 +56,7 @@ Raspi-FM is a lightweight and user-friendly FM transmitter project based on the 
 
 To install Raspi-FM, run the following command on your Raspberry Pi::
 ```bash
-curl -fsSL https://raw.githubusercontent.com/vojtikDortik/raspi-fm/refs/heads/main/install.sh | sudo bash
+curl -fsSL https://raw.githubusercontent.com/jsem-nerad/raspi-fm/refs/heads/main/install.sh | sudo bash
 ```
 
 
@@ -112,7 +112,7 @@ You can use the following commands alone or specify a service:
 
 #### Or you can just type `raspifm` to get hint
 
-<img src="https://raw.githubusercontent.com/vojtikDortik/raspi-fm/refs/heads/main/images/screenshot.png" style="width: 80%; height: auto;">
+<img src="https://raw.githubusercontent.com/jsem-nerad/raspi-fm/refs/heads/main/images/screenshot.png" style="width: 80%; height: auto;">
 
 <br>
 <br>
