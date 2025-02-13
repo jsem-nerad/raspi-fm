@@ -181,7 +181,7 @@ When the install.sh script is executed, the following steps occur:"
 2. Update using `apt update`
 3. Install the following packages:
    
-| Package            | Reason |
+| Package            | Used for |
 |--------------------|-------------|
 | dnsmasq           | WiFi AP  |
 | hostapd           | WiFi AP |
