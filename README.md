@@ -226,6 +226,7 @@ This is my custom made Python library used to control the fm_transmitter app.
 
 ### `app.py`
 
+This is the main app, that is running in the background to serve the web-ui controls. On default, it uses port 5000 to serve the website, so it doesn't colide with ports you may have opened before, but you can change that on the bottom of the code to any port you want.
 
 ---
 
