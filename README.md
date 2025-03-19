@@ -143,7 +143,7 @@ If you're interested, here's an overview of how this project works.
 ## Files
 ```
 Raspi-FM                           - Main app directory - on default /opt/raspifm
-├── app
+├── app                            - Python app directory
 │   ├── static
 │   │   └── styles.css             - Web ui CSS
 │   ├── templates
@@ -161,7 +161,7 @@ Raspi-FM                           - Main app directory - on default /opt/raspif
 │   ├── raspifm-app.service        - Systemd service that starts app.py in Python venv
 │   └── raspifm-wifi.service       - Systemd service that starts the access point using setup_ap.sh
 ├── config.ini                     - Configuration file
-├── install.sh
+├── install.sh                     - The script that installs this app
 ├── raspifm                        - The shell file for interacting using command line
 └── requirements.txt               - Python library requirements
 ```
