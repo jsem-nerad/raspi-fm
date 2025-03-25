@@ -70,8 +70,8 @@ I tested this only on my Pi Zero W, but it should work on most Raspberry Pi mode
 
 # Usage
 After successful installation:
-1. Connect to the Pi using WiFi. You should see the SSID raspi-fm, which you can connect to using the password flipfmsignal.
-2. Then open your web browser and go to its default IP address on port 5000: http://192.168.4.1:5000 
+1. Connect to the Pi using WiFi. You should see the SSID `raspi-fm`, which you can connect to using the password `flipfmsignal`.
+2. Then open your web browser and go to its default IP address on port 5000: `http://192.168.4.1:5000` 
 3. If you experience issues connecting to Wi-Fi or accessing its IP address, try turning off your mobile data (if you are using a phone) and/or disabling auto-connect for known nearby Wi-Fi networks.
 4. Now you can choose a frequency, select an audio file, and click 'Start Transmission'.
 
