@@ -234,6 +234,8 @@ This is the main app, that is running in the background to serve the web-ui cont
 <br>
 
 # ⚠️ Legal Disclaimer ⚠️
+This software is provided "as is", without warranty of any kind, express or implied. The author(s) shall not be liable for any claim, damages, or other liability arising from the use of this software.
+
 This application is developed solely for educational purposes to demonstrate technical concepts. Using this application to broadcast FM radio signals is illegal in many countries, including the Czech Republic, without proper licensing and authorization. The author does not condone or encourage any unlawful use of this software.
 By using this repository, you agree that you are solely responsible for ensuring compliance with all applicable laws and regulations in your jurisdiction. The author assumes no liability for any misuse or legal consequences resulting from the use of this software. This disclaimer makes it clear that the project is intended for learning only and warns users about the legal implications of misuse.
 
