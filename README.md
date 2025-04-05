@@ -176,7 +176,7 @@ The installer code gets read from the GitHub repo and then gets executed using b
 
 `curl -fsSL https://...../install.sh | sudo bash`
 
-When the install.sh script is executed, the following steps occur:"
+When the install.sh script is executed, the following steps occur:
 1. Check if it was executed using sudo
 2. Update using `apt update`
 3. Install the following packages:
